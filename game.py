@@ -98,12 +98,12 @@ class Game():
 
         #draw horizontal lines
         for row in range(GRID_HEIGHT):
-            pygame.draw.line(self.window, WHITE, 
+            pygame.draw.line(self.window, LINE_COLOR, 
             (WINDOW_MARGIN_X, WINDOW_MARGIN_Y+row*BOX_SIZE), (WINDOW_MARGIN_X + BOX_SIZE*GRID_WIDTH, WINDOW_MARGIN_Y+row*BOX_SIZE))
 
         #draw vevrtical lines
         for col in range(GRID_WIDTH):
-            pygame.draw.line(self.window, RED, 
+            pygame.draw.line(self.window, LINE_COLOR, 
             (WINDOW_MARGIN_X + col*BOX_SIZE, WINDOW_MARGIN_Y), (WINDOW_MARGIN_X + col*BOX_SIZE, WINDOW_MARGIN_Y + BOX_SIZE*GRID_HEIGHT))
   
     def updateUI(self,):
@@ -116,11 +116,14 @@ class Game():
 def runGame():
 
     running = True
-
+    score = 0
     game = Game(WINDOW)
     timeDelta = time.time()
     food = game.createFood()
     while running:
+        WINDOW.fill(BLACK)
+        surf = pygame.transform.rotate(font.render('Score: %d'%score, 1, YELLOW), 90)
+        WINDOW.blit(surf, (2, WINDOW_HEIGHT//3))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -147,6 +150,7 @@ def runGame():
         game.updateUI()
         eaten = game.snake.grow(food)
         if eaten:
+            score += 1
             MUNCH.play()
             food = game.createFood()
 
