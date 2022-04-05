@@ -36,7 +36,7 @@ FOOD_COLOR = RED
 
 LINE_COLOR = WHITE
 
-SNAKE_SPEED = 100 /1000
+SNAKE_SPEED = 150 /1000
 
 #[GAME]
 FPS = 30
@@ -80,7 +80,7 @@ font = pygame.font.SysFont('Deja Vu Sans', 50, True)
 MUNCH = pygame.mixer.Sound('./assets/munch.wav')
 
 pygame.mixer.music.load('./assets/gamemusic.mp3')
-pygame.mixer.music.play()
+pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(0.5)
 
 print("✔🕙 All resources loaded...")

@@ -1,4 +1,3 @@
-from tkinter.tix import DirTree
 from constants import *
 
 
